@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.checkbox:checked + .toggle-label {
+    background-color: rgb(234 179 8);
+}
+
+.checkbox:checked {
+    /* Apply class right-0*/
+    right: 0;
+}
+
+.message {
+    position: fixed;
+    left: 0;
+    bottom: 24px;
+    width: 100%;
+}
+
+.search {
+    background: none;
+}
