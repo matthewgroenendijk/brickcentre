@@ -1,10 +1,10 @@
 <?php
 
-use Mail;
 use App\Mail\OrderBevestiging;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,11 +31,11 @@ Route::resource('orders', OrderController::class);
 Route::get('send-mail', function () {
     $details = [
 
-        'title' => 'Mail from ItSolutionStuff.com',
+        'title' => 'Mail from TheWorldofBricks.nl',
 
         'body' => 'This is for testing email using smtp'
 
     ];
-    \Mail::to('matthewgroenendijk@icloud.com')->send(new OrderBevestiging());
+    Mail::to('matthewgroenendijk@icloud.com')->send(new OrderBevestiging($details));
     dd("Email is Sent.");
 });

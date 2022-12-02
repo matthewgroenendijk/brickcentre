@@ -16,8 +16,9 @@ class OrderBevestiging extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
+        $this->details = $details;
     }
 
     /**
@@ -27,6 +28,6 @@ class OrderBevestiging extends Mailable
      */
     public function build()
     {
-        return $this->subject('Order bevestiging!')->view('emails.orderBevestiging');
+        return $this->subject('Order bevestiging!')->view('emails.orderBevestiging')->with('details', $this->details);
     }
 }
