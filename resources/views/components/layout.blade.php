@@ -7,9 +7,19 @@
             <div class="mt-8 text-center">
                 <img src="https://images.unsplash.com/photo-1610483178766-8092d96033f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
                     alt="" class="m-auto h-10 w-10 rounded-full object-cover lg:h-28 lg:w-28" />
-                <h5 class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block dark:text-gray-300">BrickCentre
+                <h5 class="mt-4 hidden text-xl font-semibold text-gray-600 lg:block dark:text-gray-300">
+                    @auth
+                        {{ auth()->user()->name }}
+                    @endauth
                 </h5>
-                <span class="hidden text-gray-400 lg:block">Dashboard</span>
+                <span class="hidden text-gray-400 lg:block">
+                    @auth
+                        {{ auth()->user()->email }}
+                    @endauth
+                    @guest
+                        Hallo
+                    @endguest
+                </span>
             </div>
 
             <ul class="mt-8 space-y-2 tracking-wide">

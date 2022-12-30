@@ -15,7 +15,6 @@
 
 <body class="dark:bg-gray-800">
     @include('components.layout')
-    {{-- @yield('content') --}}
 </body>
 
 </html>
