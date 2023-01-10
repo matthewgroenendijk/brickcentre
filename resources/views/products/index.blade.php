@@ -85,20 +85,23 @@
                                     <td
                                         class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-600 text-sm">
                                         @if ($product->voorraad == 'op_voorraad')
-                                            <p class="text-green-400 font-bold whitespace-no-wrap">
-                                                Op voorraad
+                                            <p
+                                                class="text-green-400 bg-green-400 bg-opacity-20 border border-green-400 px-2 py-1 rounded-full w-fit font-bold whitespace-no-wrap">
+                                                <i class="far fa-dot-circle"></i> Op voorraad
                                             </p>
                                         @elseif ($product->voorraad == 'moet_besteld_worden')
                                             <p class="text-yellow-400 font-bold whitespace-no-wrap">
-                                                Moet besteld worden
+                                                <i class="far fa-dot-circle"></i> Moet besteld worden
                                             </p>
                                         @elseif ($product->voorraad == 'tijdelijk_niet_leverbaar')
-                                            <p class="text-orange-400 font-bold whitespace-no-wrap">
-                                                Tijdelijk niet leverbaar
+                                            <p
+                                                class="text-orange-400 px-2 py-1 bg-orange-400 bg-opacity-20 w-fit border-orange-400 border rounded-full font-bold whitespace-no-wrap">
+                                                <i class="far fa-dot-circle"></i> Tijdelijk niet leverbaar
                                             </p>
                                         @elseif ($product->voorraad == 'niet_meer_leverbaar')
-                                            <p class="text-red-400 font-bold whitespace-no-wrap">
-                                                Niet meer leverbaar
+                                            <p
+                                                class="text-red-400 py-1 px-2 w-fit border-red-400 bg-red-400 bg-opacity-20 border rounded-full font-bold whitespace-no-wrap">
+                                                <i class="far fa-dot-circle"></i> Niet meer leverbaar
                                             </p>
                                         @endif
                                         </p>
