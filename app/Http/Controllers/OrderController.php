@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -48,9 +50,19 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Order $order, Request $request)
     {
-        //
+
+        $customer = User::find($order->user_id);
+
+        return view('orders.show', compact('order', 'customer'));
+    }
+
+    public function pdf(Order $order)
+    {
+        $pdf = PDF::loadView('emails.orderBevestiging', compact('order'))->setOptions(['defaultFont' => 'sans-serif']);
+
+        return $pdf->download('pdfview.pdf');
     }
 
     /**

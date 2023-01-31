@@ -4,6 +4,7 @@ use App\Mail\OrderBevestiging;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
@@ -29,7 +30,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('products', ProductController::class);
 
+    Route::resource('users', CustomerController::class);
+
     Route::resource('orders', OrderController::class);
+    Route::get('/order/{order}/pdf', [OrderController::class, 'pdf'])->name('pdf');
     Route::get('send-mail', function () {
         $details = [
 

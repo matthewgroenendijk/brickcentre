@@ -17,6 +17,7 @@
 </head>
 
 <body class="dark:bg-gray-800">
+    @include('components.message')
     @include('components.layout')
 </body>
 

@@ -1,7 +1,44 @@
 @extends('components.master')
 @section('content')
-    <div class="px-6 pt-6 2xl:container">
+    <div class="px-6 pt-2 2xl:container">
+        <header aria-label="Page Header">
+            <div class="py-8 sm:pb-12">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <div class="text-center sm:text-left">
+                        <h1 class="text-2xl font-bold text-white sm:text-3xl">
+                            Welkom Terug, {{ auth()->user()->name }}!
+                        </h1>
+
+                        <p class="mt-1.5 text-sm text-gray-500">
+                            Bekijk hier alle beschikbare data! 🎉
+                        </p>
+                    </div>
+
+                    <div class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+                        <button
+                            class="inline-flex items-center justify-center rounded-lg border border-gray-200 bg-gray-300 px-5 py-3 text-gray-900 transition hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:ring"
+                            type="button">
+                            <span class="text-sm font-medium"> Bekijk Website </span>
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-1.5 h-4 w-4" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                        </button>
+
+                        {{-- <button
+                            class="block rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
+                            type="button">
+                            Create Post
+                        </button> --}}
+                    </div>
+                </div>
+            </div>
+        </header>
+
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
             <div>
                 <div
                     class="h-full group p-6 sm:p-8 rounded-3xl bg-white border border-gray-200/50 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
@@ -103,8 +140,8 @@
                                 <stop stop-color="#E323FF" />
                                 <stop offset="1" stop-color="#7517F8" />
                             </linearGradient>
-                            <linearGradient id="paint1_linear_622:13617" x1="1.74103e-06" y1="8.70228e-06" x2="6.34739e-08"
-                                y2="140.677" gradientUnits="userSpaceOnUse">
+                            <linearGradient id="paint1_linear_622:13617" x1="1.74103e-06" y1="8.70228e-06"
+                                x2="6.34739e-08" y2="140.677" gradientUnits="userSpaceOnUse">
                                 <stop stop-color="#4DFFDF" />
                                 <stop offset="1" stop-color="#4DA1FF" />
                             </linearGradient>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -85,7 +86,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.add');
+
+        $categories = Category::get();
+
+        return view('products.add', compact('categories'));
     }
 
     /**
@@ -109,31 +113,71 @@ class ProductController extends Controller
             'set_number' => 'required',
             'category' => 'required',
             'price' => 'required',
-            'max_weeks' => '',
             'length' => 'required',
             'width' => 'required',
             'height' => 'required',
-            'image_thumbnail' => 'required',
             'spotlight' => 'required',
             'voorraad' => 'required',
         ]);
 
         $input = $request->all();
-        if ($request->hasFile('image_thumbnail')) {
-            $destination_path = 'public/images/products';
-            $image_thumbnail = $request->file('image_thumbnail');
-            $image_thumbnail_name = $image_thumbnail->getClientOriginalName();
-            $image_thumbnail_path = $request->file('image_thumbnail')->storeAs($destination_path, $image_thumbnail_name);
-            // $input = $request->input('name');
+        $images = array();
+        if ($files = $request->file('images')) {
+            foreach ($files as $file) {
+                $name = $file->getClientOriginalName();
+                $file->move('image', $name);
+                $images[] = $name;
+            }
         }
 
-        // @dd($input);
+        $images = json_encode($images);
+        /*Insert your data*/
+
         $product = new Product();
 
-        $product->image_thumbnail = $image_thumbnail_name;
+        $product->images = $images;
+
         $product->fill($request->all());
 
         $product->save();
+
+        // Product::insert([
+        //     'images' => $images,
+        //     'description' => $input['description'],
+        //     'name' => $input['name'],
+        //     'bricks_amount' => $input['bricks_amount'],
+        //     'set_number' => $input['set_number'],
+        //     'category' => $input['category'],
+        //     'price' => $input['price'],
+        //     'length' => $input['length'],
+        //     'width' => $input['width'],
+        //     'height' => $input['height'],
+        //     'spotlight' => $input['spotlight'],
+        //     'voorraad' => $input['voorraad'],
+        // ]);
+
+        // $input = $request->all();
+        // if ($request->hasFile('image_thumbnail')) {
+        //     $destination_path = 'public/images/products';
+        //     $image_thumbnail = $request->file('image_thumbnail');
+        //     $image_thumbnail_name = $image_thumbnail->getClientOriginalName();
+        //     $image_thumbnail_path = $request->file('image_thumbnail')->storeAs($destination_path, $image_thumbnail_name);
+        //     // $input = $request->input('name');
+        // }
+
+        // // @dd($input);
+        // $product = new Product();
+
+        // $product->image_thumbnail = $image_thumbnail_name;
+
+
+
+        // $product->fill($request->all());
+
+        // dd($product->image_thumbnail);
+
+
+        // $product->save();
 
         $stripe->products->create([
             'name' => $request->name,
@@ -163,7 +207,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        $categories = Category::get();
+
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -182,7 +228,7 @@ class ProductController extends Controller
             'set_number' => 'required',
             'category' => 'required',
             'price' => 'required',
-            'max_weeks' => 'required',
+            'max_weeks' => '',
             'length' => 'required',
             'width' => 'required',
             'height' => 'required',

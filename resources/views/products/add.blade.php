@@ -93,8 +93,7 @@
                                     <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/simple_form-svg1.svg"
                                         alt="Edit">
                                 </label>
-                                <input type="file" id="thumbnail" name="image_thumbnail" hidden accept="image/*"
-                                    onchange="showPreview(event);" />
+                                <input required type="file" name="images[]" placeholder="address" multiple>
                             </div>
                         </div>
                         <div class="mt-8 flex flex-col xl:w-2/6 lg:w-1/2 md:w-1/2 w-full">
@@ -112,26 +111,6 @@
                                 placeholder="Let the world know who you are" maxlength="800" rows="5" required></textarea>
                             <p class="w-full text-right text-xs pt-1 text-gray-600 dark:text-gray-400">Character Limit: 200
                             </p>
-                        </div>
-
-                        <div class="container mx-auto bg-gray-100 rounded w-full dark:bg-gray-700 pb-6">
-                            <div class="px-8">
-                                <div class="flex justify-between items-center mb-4 mt-8">
-                                    <div class="w-9/12 pt-4">
-                                        <p class="text-sm pt-6 text-gray-800 dark:text-gray-100 font-bold  pb-1">Verkoop
-                                        </p>
-                                        <p id="cb1" class="text-sm text-gray-600 dark:text-gray-400">Word dit product
-                                            gebruikt voor verkoop?</p>
-                                    </div>
-                                    <div class="cursor-pointer rounded-full mt-4 bg-gray-200 relative shadow-sm">
-                                        <!-- Rounded switch -->
-                                        <label class="switch">
-                                            <input type="checkbox" id="accept" onclick="toggleVerkoop()" checked>
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -174,18 +153,14 @@
                                     <select name="category" id="category"
                                         class="pl-3 py-3 w-full text-sm focus:outline-none border border-transparent focus:border-yellow-500 bg-transparent rounded placeholder-gray-500 text-gray-600 dark:text-gray-400"
                                         required>
-                                        <option value="ninjago">Ninjago</option>
-                                        <option value="creator_expert">Creator Expert</option>
-                                        <option value="architecture">Architecture</option>
+                                        @foreach ($categories as $categorie)
+                                            <option value="{{ $categorie->categorie_naam }}">
+                                                {{ $categorie->categorie_naam }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="xl:w-full lg:w-1/2 md:w-1/2 flex flex-col mb-6">
-                                <label for="price" id="verhuur"
-                                    class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Price
-                                    Per
-                                    Week (in
-                                    €)</label>
                                 <label for="price" id="verkoop"
                                     class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Price
                                     Per (in
@@ -193,18 +168,6 @@
                                 <input type="number" id="price" name="price"
                                     class="border border-gray-300 dark:border-gray-700 pl-3 py-3 shadow-sm bg-transparent rounded text-sm focus:outline-none focus:border-yellow-500 placeholder-gray-500 text-gray-600 dark:text-gray-400"
                                     placeholder="€7,50" />
-                            </div>
-                            <div class="xl:w-full lg:w-1/2 md:w-1/2 flex flex-col mb-6" id="verhuurWeeks">
-                                <label for="max_weeks" class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Max
-                                    Weeks</label>
-                                <div class="border border-gray-300 dark:border-gray-700 shadow-sm rounded flex">
-                                    <select name="max_weeks" id="max_weeks"
-                                        class="pl-3 py-3 w-full text-sm focus:outline-none border border-transparent focus:border-yellow-500 bg-transparent rounded placeholder-gray-500 text-gray-600 dark:text-gray-400">
-                                        <option value="1">1 Week</option>
-                                        <option value="2">2 Weeks</option>
-                                        <option value="3">3 Weeks</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                         <div class="my-6 w-11/12 mx-auto xl:w-full xl:mx-0 grid grid-cols-3 gap-4">
@@ -300,24 +263,5 @@
                 preview.style.display = "block";
             }
         }
-
-        function toggleVerkoop() {
-            var verhuur = document.getElementById("verhuur");
-            var verhuurWeeks = document.getElementById("verhuurWeeks");
-            var verkoop = document.getElementById("verkoop");
-
-            const checked = document.querySelector('#accept:checked');
-            if (checked !== null) {
-                verkoop.style.display = "block";
-                verhuur.style.display = "none";
-                verhuurWeeks.style.display = "none";
-            }
-            if (checked === null) {
-                verkoop.style.display = "none";
-                verhuur.style.display = "block"
-                verhuurWeeks.style.display = "block";
-            }
-        }
-        window.onload = toggleVerkoop;
     </script>
 @endsection

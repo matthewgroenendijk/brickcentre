@@ -60,6 +60,6 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return view('index')->with('message', 'Succesvol uitgelogd');
+        return view('auth.login')->with('message', 'Succesvol uitgelogd');
     }
 }
