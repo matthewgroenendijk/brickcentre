@@ -5,7 +5,7 @@
         <div class="pb-12 lg:pb-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <div class="text-center sm:text-left">
-                    <h1 class="text-2xl font-bold text-white sm:text-3xl">
+                    <h1 class="text-2xl font-bold dark:text-white sm:text-3xl">
                         Bestelling - #{{ $order->id }}
                     </h1>
 
@@ -19,19 +19,13 @@
                         href="{{ route('pdf', $order->id) }}">
                         <i class="mr-1 text-lg leading-none fas fa-file-pdf"></i> PDF
                     </a>
-
-                    {{-- <button
-                        class="block rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring"
-                        type="button">
-                        Create Post
-                    </button> --}}
                 </div>
             </div>
         </div>
     </header>
     <div class="grid-cols-3 grid gap-4 mb-4">
         <div
-            class="relative flex flex-col min-w-0 break-words bg-slate-700 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:shadow-dark-xl rounded-2xl bg-clip-border">
             <div class="flex-auto py-4 px-2">
                 <div class="flex flex-row">
                     <div class="flex-none w-2/3 max-w-full px-3">
@@ -55,13 +49,13 @@
             </div>
         </div>
         <div
-            class="relative flex flex-col min-w-0 break-words bg-slate-700 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:shadow-dark-xl rounded-2xl bg-clip-border">
             <div class="flex-auto py-4 px-2">
                 <div class="flex flex-row">
                     <div class="flex-none w-2/3 max-w-full px-3">
                         <div>
                             <p
-                                class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
+                                class="mb-0 font-sans text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
                                 Order Status</p>
                             <h5
                                 class="text-red-400 py-1 px-2 mt-1 w-fit border-red-400 bg-red-400 bg-opacity-20 border rounded-full text-xs font-bold whitespace-no-wrap">
@@ -79,7 +73,7 @@
             </div>
         </div>
         <div
-            class="relative flex flex-col min-w-0 break-words bg-slate-700 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:shadow-dark-xl rounded-2xl bg-clip-border">
             <div class="flex-auto py-4 px-2">
                 <div class="flex flex-row">
                     <div class="flex-none w-2/3 max-w-full px-3">
@@ -87,7 +81,7 @@
                             <p
                                 class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
                                 Totaal bedrag</p>
-                            <h5 class="mb-2 text-sm font-bold dark:text-white">€{{ $order->total_price }},-</h5>
+                            <h5 class="text-xl font-bold text-green-500 dark:text-white">€{{ $order->total_price }},-</h5>
                         </div>
                     </div>
                     <div class="px-3 text-right basis-1/3">
@@ -106,10 +100,10 @@
 
             <div class="w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-0">
                 <div
-                    class="relative flex flex-col min-w-0 break-words bg-white dark:bg-slate-700 border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+                    class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid py-4 px-6 pb-0">
                         <div class="flex items-center">
-                            <p class="mb-0 dark:text-white/80">Klant Gegevens</p>
+                            <p class="mb-0 text-lg font-bold dark:text-white/80">Klant Gegevens</p>
                             <button type="button"
                                 class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-yellow-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Wijzig</button>
                         </div>
@@ -183,11 +177,11 @@
             </div>
             <div class="w-full max-w-full px-3 lg:w-1/3 lg:flex-none">
                 <div
-                    class="relative flex flex-col pb-2 h-content min-w-0 break-words bg-white dark:bg-slate-700 border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+                    class="relative flex flex-col pb-2 h-content min-w-0 break-words border-2 border-gray-200 bg-gray-50 dark:bg-slate-700 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                     <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                         <div class="flex flex-wrap -mx-3">
                             <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                <h6 class="mb-0 dark:text-white">Producten</h6>
+                                <h6 class="mb-0 text-lg font-bold dark:text-white">Producten</h6>
                             </div>
                             <div class="flex-none w-1/2 max-w-full px-3 text-right">
                                 <p
