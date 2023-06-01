@@ -23,42 +23,14 @@ class ProductController extends Controller
         );
 
         $productStripe = $stripe->products->all(['limit' => 1]);
-
-
+        
         $product = DB::table('products')->orderBy('id', 'desc')->first();
 
-
-        if ($product->prod_id == null) {
-
-            DB::table('products')
-                ->where('id', $product->id)
-                ->update(['prod_id' => $productStripe->data[0]->id]);
-
-            $stripe->prices->create([
-                'unit_amount' => $product->price * 100,
-                'currency' => 'eur',
-                'billing_scheme' => 'per_unit',
-                'product' => $productStripe->data[0]->id,
-            ]);
+        // if there is no product in the database, show an error
+        if ($product == null) {
+            return view('products.index', compact('data'));
         }
-
-        if ($product->price_id == null) {
-            $productStripe = $stripe->products->all(['limit' => 1]);
-
-            $priceStripe = $stripe->prices->all(['limit' => 1]);
-
-            DB::table('products')
-                ->where('id', $product->id)
-                ->update(['price_id' => $productStripe->data[0]->default_price]);
-
-            $stripe->products->update(
-                $productStripe->data[0]->id,
-                ['default_price' => $priceStripe->data[0]->id],
-            );
-        }
-
-
-
+        
         return view('products.index', compact('data'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -92,6 +64,12 @@ class ProductController extends Controller
         return view('products.add', compact('categories'));
     }
 
+    function createUrlSlug($urlString)
+    {
+        $slug = preg_replace('/[^A-Za-z0-9-]+/', '-', $urlString);
+        return $slug;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -106,83 +84,87 @@ class ProductController extends Controller
 
         // dd($request->all());
 
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'bricks_amount' => 'required',
-            'set_number' => 'required',
-            'category' => 'required',
-            'price' => 'required',
-            'length' => 'required',
-            'width' => 'required',
-            'height' => 'required',
-            'spotlight' => 'required',
-            'voorraad' => 'required',
-        ]);
+            $request->validate([
+                'name' => 'required',
+                'description' => 'required',
+                'bricks_amount' => 'required',
+                'set_number' => 'required',
+                'category' => 'required',
+                'length' => 'required',
+                'width' => 'required',
+                'height' => 'required',
+                'price' => 'required',
+                'quantity' => 'required',
+                'security_stock' => 'required',
+                'barcode' => 'required',
+                'spotlight' => 'required',
+            ]);
 
-        $input = $request->all();
-        $images = array();
-        if ($files = $request->file('images')) {
-            foreach ($files as $file) {
-                $name = $file->getClientOriginalName();
-                $file->move('image', $name);
-                $images[] = $name;
+            if ($request->hasFile('thumbnail')) {
+                $file = $request->file('thumbnail');
+                $filename = $file->getClientOriginalName();
+                $file->storeAs('thumbnails/', $filename);
             }
-        }
 
-        $images = json_encode($images);
-        /*Insert your data*/
+            $images = array();
+            if ($files = $request->file('images')) {
+                foreach ($files as $file) {
+                    $name = $file->getClientOriginalName();
+                    $file->storeAs('images/', $name);
+                    $images[] = $name;
+                }
+            }
 
-        $product = new Product();
-
-        $product->images = $images;
-
-        $product->fill($request->all());
-
-        $product->save();
-
-        // Product::insert([
-        //     'images' => $images,
-        //     'description' => $input['description'],
-        //     'name' => $input['name'],
-        //     'bricks_amount' => $input['bricks_amount'],
-        //     'set_number' => $input['set_number'],
-        //     'category' => $input['category'],
-        //     'price' => $input['price'],
-        //     'length' => $input['length'],
-        //     'width' => $input['width'],
-        //     'height' => $input['height'],
-        //     'spotlight' => $input['spotlight'],
-        //     'voorraad' => $input['voorraad'],
-        // ]);
-
-        // $input = $request->all();
-        // if ($request->hasFile('image_thumbnail')) {
-        //     $destination_path = 'public/images/products';
-        //     $image_thumbnail = $request->file('image_thumbnail');
-        //     $image_thumbnail_name = $image_thumbnail->getClientOriginalName();
-        //     $image_thumbnail_path = $request->file('image_thumbnail')->storeAs($destination_path, $image_thumbnail_name);
-        //     // $input = $request->input('name');
-        // }
-
-        // // @dd($input);
-        // $product = new Product();
-
-        // $product->image_thumbnail = $image_thumbnail_name;
+            $images = json_encode($images);
+            /*Insert your data*/
 
 
 
-        // $product->fill($request->all());
+            $product = new Product();
 
-        // dd($product->image_thumbnail);
+            // slugify the name and store it in the database
+            $product->slug = $this->createUrlSlug($request->name);
 
+            $product->images = $images;
 
-        // $product->save();
+            $product->thumbnail = $request->file('thumbnail')->getClientOriginalName();
+
+            $product->fill($request->all());
+
+            // dd($product);
+
+            $product->save();
+
 
         $stripe->products->create([
             'name' => $request->name,
             'description' => $request->description,
         ]);
+
+        // add product from stripe to database
+        $productStripe = $stripe->products->all(['limit' => 1]);
+
+        DB::table('products')
+            ->where('id', $product->id)
+            ->update(['prod_id' => $productStripe->data[0]->id]);
+
+        // add price from stripe to database
+        $priceStripe = $stripe->prices->create([
+            'unit_amount' => $request->price * 100,
+            'currency' => 'eur',
+            'billing_scheme' => 'per_unit',
+            'product' => $productStripe->data[0]->id,
+        ]);
+
+        DB::table('products')
+            ->where('id', $product->id)
+            ->update(['price_id' => $priceStripe->id]);
+
+        // add price from stripe to database
+        $stripe->products->update(
+            $productStripe->data[0]->id,
+            ['default_price' => $priceStripe->id],
+        );
 
         return redirect()->route('products.index')
             ->with('success', 'Post created successfully.');

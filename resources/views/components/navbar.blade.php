@@ -1,6 +1,6 @@
     <div class="relative shadow-lg">
         <!-- For md screen size -->
-        <div id="md-searchbar" class="bg-white dark:bg-gray-900 hidden lg:hidden py-5 px-6 items-center justify-between">
+        <div id="md-searchbar" class="bg-white shadow-xl dark:bg-gray-900 hidden lg:hidden py-5 px-6 items-center justify-between">
             <div class="flex items-center space-x-3 text-gray-800 dark:text-white">
                 <div>
                     <img class="dark:hidden" src="https://tuk-cdn.s3.amazonaws.com/can-uploader/navigation-I-svg2.svg"
@@ -24,7 +24,7 @@
         <!-- For md screen size -->
 
         <!-- For large screens -->
-        <div class="dark:bg-gray-900 bg-gray-50 px-6 py-9">
+        <div class="dark:bg-gray-900 shadow-xl bg-gray-50 px-6 py-9">
             <div class="container mx-auto flex items-center justify-between">
                 <h1 class="md:w-2/12 cursor-pointer font-bold text-gray-800 dark:text-yellow-500"
                     aria-label="the Crib.">

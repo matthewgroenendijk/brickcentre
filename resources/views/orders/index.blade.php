@@ -6,7 +6,7 @@
         {{-- New --}}
         <div class="rounded-md w-full">
             <div class="flex items-center justify-between pb-6">
-                <div class="w-full border-b border-gray-300 dark:border-gray-700 py-5 bg-white dark:bg-gray-800">
+                <div class="w-full border-b border-gray-300 dark:border-gray-700 py-5">
                     <div class="flex mx-auto w-full xl:mx-0 items-center justify-between">
                         <h1 class="text-lg text-gray-800 dark:text-gray-100 font-bold">Orders Overzicht</h1>
                         <div class="flex bg-gray-50 dark:bg-gray-700 items-center p-2 rounded-lg shadow">
@@ -23,32 +23,32 @@
                 </div>
             </div>
             <div class="overflow-x-auto">
-                <div class="inline-block min-w-full rounded-lg overflow-hidden">
+                <div class="inline-block min-w-full rounded-lg border border-gray-200 overflow-hidden">
                     <table class="min-w-full leading-normal">
                         <thead>
                             <tr>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Ordernummer
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Productnaam
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Betaalstatus
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Orderstatus
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     KlantID
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Acties
                                 </th>
                             </tr>

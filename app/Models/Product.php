@@ -10,6 +10,6 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'bricks_amount', 'set_number', 'category', 'price', 'max_weeks', 'length', 'width', 'height', 'image_thumbnail', 'spotlight', 'voorraad',
+        'name', 'description', 'bricks_amount', 'set_number', 'category', 'price', 'max_weeks', 'length', 'width', 'height', 'spotlight', 'quantity', 'security_stock','barcode',
     ];
 }

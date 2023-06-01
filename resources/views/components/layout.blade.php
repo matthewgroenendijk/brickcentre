@@ -1,6 +1,5 @@
-<body class="bg-gray-100 dark:bg-gray-900">
     <aside
-        class="fixed top-0 z-50 ml-[-100%] flex h-screen w-full flex-col justify-between border-r bg-white px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[18%] 2xl:w-[15%] dark:bg-gray-800 dark:border-gray-700">
+        class="fixed top-0 z-50 ml-[-100%] flex h-screen w-full flex-col justify-between border-r bg-white shadow-lg px-6 pb-3 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[18%] 2xl:w-[15%] dark:bg-gray-800 dark:border-gray-700">
         <div>
 
 
@@ -25,7 +24,7 @@
             <ul class="mt-8 space-y-2 tracking-wide">
                 <li>
                     <a href="/" aria-label="dashboard"
-                        class="relative flex items-center space-x-4 rounded-xl bg-gradient-to-r from-yellow-600 to-yellow-400 px-4 py-3 text-white">
+                        class="relative flex items-center space-x-4 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-600/80 px-4 py-3 text-white">
                         <svg class="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
                             <path
                                 d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
@@ -90,7 +89,7 @@
         </div>
     </aside>
     <div class="ml-auto mb-6 lg:w-[75%] xl:w-[82%] 2xl:w-[85%]">
-        <div class="sticky top-0 h-16 border-b bg-white dark:bg-gray-800 dark:border-gray-700 lg:py-2.5">
+        <div class="sticky top-0 z-10 h-16 border-b bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 lg:py-2.5">
             <div class="flex items-center justify-between space-x-4 px-6 2xl:container">
                 <h5 hidden class="text-2xl font-medium text-gray-600 lg:block dark:text-white">Dashboard</h5>
                 <button class="-mr-2 h-16 w-12 border-r lg:hidden dark:border-gray-700 dark:text-gray-300">
@@ -154,4 +153,3 @@
             @yield('content')
         </div>
     </div>
-</body>

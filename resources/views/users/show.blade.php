@@ -6,7 +6,7 @@
             <div class="sm:flex sm:items-center sm:justify-between">
                 <div class="text-center sm:text-left">
                     <h1 class="text-2xl font-bold dark:text-white sm:text-3xl">
-                        Bestelling - #{{ $order->id }}
+                        Naam - {{ $customer->name }}
                     </h1>
 
                     <p class="mt-1.5 text-sm text-gray-500">
@@ -14,106 +14,30 @@
                     </p>
                 </div>
 
-                <div class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+                {{-- <div class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
                     <a class="inline-flex items-center justify-center dark:text-white inline-block px-0 py-2.5 mb-0 ml-6 font-bold leading-normal text-center uppercase align-middle transition-all bg-transparent border-0 rounded-lg shadow-none cursor-pointer ease-in bg-150 text-sm active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 text-slate-700 rounded-lg border border-gray-200 bg-gray-400 px-5 py-3 text-gray-900 transition hover:bg-gray-50 hover:text-gray-700"
                         href="{{ route('pdf', $order->id) }}">
                         <i class="mr-1 text-lg leading-none fas fa-file-pdf"></i> PDF
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </header>
-    <div class="grid-cols-3 grid gap-4 mb-4">
-        <div
-            class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-            <div class="flex-auto py-4 px-2">
-                <div class="flex flex-row">
-                    <div class="flex-none w-2/3 max-w-full px-3">
-                        <div>
-                            <p
-                                class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
-                                Payment Status</p>
-                            <h5
-                                class="text-orange-400 py-1 px-2 mt-1 w-fit border-orange-400 bg-orange-400 bg-opacity-20 border rounded-full text-sm font-bold whitespace-no-wrap">
-                                <i class="far fa-dot-circle"></i> {{ $order->payment_status }}
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="px-3 text-right basis-1/3">
-                        <div
-                            class="inline-block w-12 h-12 text-center rounded-xl bg-gradient-to-tl from-yellow-400 to-yellow-600">
-                            <i class="fas fa-wifi text-lg relative top-3.5 text-white"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-            class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-            <div class="flex-auto py-4 px-2">
-                <div class="flex flex-row">
-                    <div class="flex-none w-2/3 max-w-full px-3">
-                        <div>
-                            <p
-                                class="mb-0 font-sans text-sm font-semibold leading-normal dark:text-white dark:opacity-60">
-                                Order Status</p>
-                            <h5
-                                class="text-red-400 py-1 px-2 mt-1 w-fit border-red-400 bg-red-400 bg-opacity-20 border rounded-full text-xs font-bold whitespace-no-wrap">
-                                <i class="far fa-dot-circle"></i> {{ $order->order_status }}
-                            </h5>
-                        </div>
-                    </div>
-                    <div class="px-3 text-right basis-1/3">
-                        <div
-                            class="inline-block w-12 h-12 text-center rounded-xl bg-gradient-to-tl from-yellow-400 to-yellow-600">
-                            <i class="fas fa-balance-scale-right relative top-3.5 text-white"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-            class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-            <div class="flex-auto py-4 px-2">
-                <div class="flex flex-row">
-                    <div class="flex-none w-2/3 max-w-full px-3">
-                        <div>
-                            <p
-                                class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
-                                Totaal bedrag</p>
-                            <h5 class="text-xl font-bold text-green-500 dark:text-white">€{{ $order->total_price }},-</h5>
-                        </div>
-                    </div>
-                    <div class="px-3 text-right basis-1/3">
-                        <div
-                            class="inline-block w-12 h-12 text-center rounded-xl bg-gradient-to-tl from-yellow-400 to-yellow-600">
-                            <i class="fas fa-money-check-alt text-white relative top-3.5"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="w-full mx-auto">
         <div class="flex flex-wrap -mx-3">
 
 
             <div class="w-full max-w-full px-3 shrink-0 lg:w-2/5 md:flex-0">
                 <div
-                    class="relative flex flex-col min-w-0 break-words bg-gray-200/75 dark:bg-slate-700 border-2 border-gray-200 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl">
-                    <div class="border-black/12.5 rounded-t-2xl bg-gray-200/75 border-b-0 border-solid py-4 px-6 pb-0">
-                        <div class="flex flex-wrap -mx-3 pb-4">
-                            <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                <h6 class="mb-0 text-lg font-bold dark:text-white">Informatie</h6>
-                            </div>
-                            <div class="flex-none w-1/2 max-w-full px-3 text-right">
-                                <p
-                                    class="inline-block px-8 py-2 mb-0 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-yellow-400 border-solid rounded-lg shadow-none cursor-default bg-150 active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 hover:bg-yellow-500">
-                                    Wijzig</p>
-                            </div>
+                    class="relative flex flex-col min-w-0 break-words bg-gray-50 dark:bg-slate-700 border-2 border-gray-200 dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+                    <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid py-4 px-6 pb-0">
+                        <div class="flex items-center">
+                            <p class="mb-0 text-lg font-bold dark:text-white/80">Klant Gegevens</p>
+                            <button type="button"
+                                class="inline-block px-8 py-2 mb-4 ml-auto font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-yellow-500 border-0 rounded-lg shadow-md cursor-pointer text-xs tracking-tight-rem hover:shadow-xs hover:-translate-y-px active:opacity-85">Wijzig</button>
                         </div>
                     </div>
-                    <div class="flex-auto px-6 rounded-2xl bg-white pb-6 pt-2">
+                    <div class="flex-auto px-6 pb-6 pt-2">
                         <p class="leading-normal uppercase dark:text-white dark:opacity-60 text-sm">Klant
                             Informatie</p>
                         <div class="-mx-3">
@@ -186,19 +110,19 @@
                     <div class="p-4 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
                         <div class="flex flex-wrap -mx-3">
                             <div class="flex items-center flex-none w-1/2 max-w-full px-3">
-                                <h6 class="mb-0 text-lg font-bold dark:text-white">Producten</h6>
+                                <h6 class="mb-0 text-lg font-bold dark:text-white">Orders</h6>
                             </div>
                             <div class="flex-none w-1/2 max-w-full px-3 text-right">
                                 <p
                                     class="inline-block px-8 py-2 mb-0 text-xs font-bold leading-normal text-center text-yellow-500 align-middle transition-all ease-in bg-transparent border border-yellow-500 border-solid rounded-lg shadow-none cursor-default bg-150 active:opacity-85 hover:-translate-y-px tracking-tight-rem bg-x-25 hover:opacity-75">
-                                    2
+                                    
                                     Items</p>
                             </div>
                         </div>
                     </div>
                     <div class="flex-auto p-4 pb-0">
                         <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-                            @foreach (json_decode($order->product_name) as $item)
+                            {{-- @foreach (json_decode($order->product_name) as $item)
                                 @foreach (json_decode($order->product_prices) as $prices)
                                     @foreach (json_decode($order->product_quantity) as $quantity)
                                         <li
@@ -219,7 +143,7 @@
                                         </li>
                                     @endforeach
                                 @endforeach
-                            @endforeach
+                            @endforeach --}}
                         </ul>
                     </div>
                 </div>

@@ -13,4 +13,12 @@ class CustomerController extends Controller
 
         return view('users.index', compact('data'));
     }
+
+    public function show(User $user, Request $request)
+    {
+
+        $customer = User::find($user->id);
+
+        return view('users.show', compact('customer'));
+    }
 }
