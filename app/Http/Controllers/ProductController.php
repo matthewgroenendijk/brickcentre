@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Image;
 
 class ProductController extends Controller
 {
@@ -82,58 +83,42 @@ class ProductController extends Controller
             'sk_test_51Ko4AEBCYBZIkEQTCzjO4ZFNMvK5tByPD0iOkH0c0JEvFzHXAnuz8nzPt5l1wqbUPlqFxxoM1PEoqzRO1de9t6mh00NbrEU74C'
         );
 
-        // dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'bricks_amount' => 'required',
+            'set_number' => 'required',
+            'category' => 'required',
+            'length' => 'required',
+            'width' => 'required',
+            'height' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'security_stock' => 'required',
+            'barcode' => 'required',
+            'spotlight' => 'required',
+            'thumbnail' => 'required',
+        ]);
 
-            $request->validate([
-                'name' => 'required',
-                'description' => 'required',
-                'bricks_amount' => 'required',
-                'set_number' => 'required',
-                'category' => 'required',
-                'length' => 'required',
-                'width' => 'required',
-                'height' => 'required',
-                'price' => 'required',
-                'quantity' => 'required',
-                'security_stock' => 'required',
-                'barcode' => 'required',
-                'spotlight' => 'required',
-            ]);
+        $product = new Product;
 
-            if ($request->hasFile('thumbnail')) {
-                $file = $request->file('thumbnail');
-                $filename = $file->getClientOriginalName();
-                $file->storeAs('thumbnails/', $filename);
-            }
+        // store the thumbnail in the database
+        $path = $request->file('thumbnail')->store('/images/resource', ['disk' => 'my_files']);
+        $product->thumbnail = $path;
 
-            $images = array();
-            if ($files = $request->file('images')) {
-                foreach ($files as $file) {
-                    $name = $file->getClientOriginalName();
-                    $file->storeAs('images/', $name);
-                    $images[] = $name;
-                }
-            }
+        foreach ($request->file('images') as $imagefile) 
+        {     
+            $image = new Image;
+            $path = $imagefile->store('/images/resource', ['disk' =>   'my_files']);
+            $image->url = $path;
+            $image->product_id = $product->id;
+            $image->save();
+        }
 
-            $images = json_encode($images);
-            /*Insert your data*/
-
-
-
-            $product = new Product();
-
-            // slugify the name and store it in the database
-            $product->slug = $this->createUrlSlug($request->name);
-
-            $product->images = $images;
-
-            $product->thumbnail = $request->file('thumbnail')->getClientOriginalName();
-
-            $product->fill($request->all());
-
-            // dd($product);
-
-            $product->save();
+        // slugify the name and store it in the database
+        $product->slug = $this->createUrlSlug($request->name);
+        $product->fill($request->all());
+        $product->save();
 
 
         $stripe->products->create([

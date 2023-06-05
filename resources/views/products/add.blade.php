@@ -126,7 +126,7 @@
                         <div class="w-full mx-auto xl:mx-0">
                             <label for="thumbnail"
                                     class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Thumbnail</label>
-                            <input required type="file" name="thumbnail" id="thumbnail" class="mt-2" multiple>
+                            <input required type="file" name="thumbnail" id="thumbnail" class="mt-2">
                         </div>
                         <div class="w-full mx-auto xl:mx-0 pt-2">
                             <label for="images"
@@ -318,34 +318,4 @@
             </div>
         </div>
     </form>
-<script>
-    const slugify = (str) => str.toLowerCase()
-                            .replace(/[^a-z0-9]+/g, '-')
-                            .replace(/(^-|-$)+/g, '');
-
-    FilePond.registerPlugin(FilePondPluginImagePreview);
-    FilePond.setOptions({
-        server: {
-            url: '/products',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-        }
-    })
-    const inputThumbnail = document.getElementById('thumbnail');
-    const pond1 = FilePond.create(inputThumbnail);
-
-    const inputImages = document.getElementById('images');
-    const pond2 = FilePond.create(inputImages);
-
-    const name = document.getElementById('name');
-    const slug = document.getElementById("slug");
-
-    name.addEventListener("change", updateValue);
-
-    function updateValue(e) {
-        slug.value = slugify(e.target.value);
-    }
-
-</script>
 @endsection
