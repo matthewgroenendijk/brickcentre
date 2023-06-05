@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Image;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -24,9 +26,9 @@ class Product extends Model
         'security_stock',
         'barcode',
     ];
-
-    public function images()
+    // add images to the product model as a relationship 
+    public function images(): HasMany
     {
-        return $this->hasMany('App\Image', 'product_id');
+        return $this->hasMany(Image::class, 'product_id', 'id');
     }
 }

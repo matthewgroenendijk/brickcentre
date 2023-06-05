@@ -98,6 +98,8 @@ class ProductController extends Controller
             'barcode' => 'required',
             'spotlight' => 'required',
             'thumbnail' => 'required',
+            'images' => 'required',
+            'images.*' => 'required|mimes:png,gif,jpg,jpeg,bmp|max:2048',
         ]);
 
         $product = new Product;
@@ -106,20 +108,19 @@ class ProductController extends Controller
         $path = $request->file('thumbnail')->store('/images/resource', ['disk' => 'my_files']);
         $product->thumbnail = $path;
 
-        foreach ($request->file('images') as $imagefile) 
-        {     
-            $image = new Image;
-            $path = $imagefile->store('/images/resource', ['disk' =>   'my_files']);
-            $image->url = $path;
-            $image->product_id = $product->id;
-            $image->save();
-        }
-
         // slugify the name and store it in the database
         $product->slug = $this->createUrlSlug($request->name);
         $product->fill($request->all());
         $product->save();
 
+        // store the images in the database
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $path = $image->store('/images/resource', ['disk' => 'my_files']);
+                $product->images()->create(['product_id' => $product->id, 'url' => $path]);
+            }
+        }
 
         $stripe->products->create([
             'name' => $request->name,

@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Image extends Model
 {
@@ -12,8 +14,9 @@ class Image extends Model
         'url', 'product_id'
     ];
 
-    public function product() 
+    // add images to the product model as a relationship
+    public function product(): BelongsTo
     {
-        return $this->belongsTo('App\Product', 'product_id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

@@ -131,7 +131,7 @@
                         <div class="w-full mx-auto xl:mx-0 pt-2">
                             <label for="images"
                                     class="pb-2 text-sm font-bold text-gray-800 dark:text-gray-100">Product foto's</label>
-                            <input required type="file" name="images" id="images" class="mt-2" multiple>
+                            <input required type="file" name="images[]" id="images" class="mt-2" multiple>
                         </div>
                     </div>
                 </div>
