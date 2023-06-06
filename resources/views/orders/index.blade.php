@@ -6,7 +6,7 @@
         {{-- New --}}
         <div class="rounded-md w-full">
             <div class="flex items-center justify-between pb-6">
-                <div class="w-full border-b border-gray-300 dark:border-gray-700 py-5">
+                <div class="w-full border-b border-gray-300 dark:border-gray-700 py-5 dark:bg-gray-800">
                     <div class="flex mx-auto w-full xl:mx-0 items-center justify-between">
                         <h1 class="text-lg text-gray-800 dark:text-gray-100 font-bold">Orders Overzicht</h1>
                         <div class="flex bg-gray-50 dark:bg-gray-700 items-center p-2 rounded-lg shadow">
@@ -23,52 +23,52 @@
                 </div>
             </div>
             <div class="overflow-x-auto">
-                <div class="inline-block min-w-full rounded-lg border border-gray-200 overflow-hidden">
+                <div class="inline-block min-w-full rounded-lg overflow-hidden border">
                     <table class="min-w-full leading-normal">
                         <thead>
                             <tr>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Ordernummer
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Productnaam
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Betaalstatus
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Orderstatus
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     KlantID
                                 </th>
                                 <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
+                                    class="px-5 py-3 border-b-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 text-left text-xs font-semibold text-gray-600 dark:text-white uppercase tracking-wider">
                                     Acties
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="bg-white">
                             @foreach ($data as $key => $order)
-                                <tr>
+                                <tr class="hover:cursor-pointer hover:bg-gray-200" onclick="window.location='{{ route('orders.show', $order->id) }}'">
                                     <td
-                                        class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-600 text-sm">
+                                        class="px-5 py-3 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-600 text-sm">
                                         <p class="text-gray-900 dark:text-white whitespace-no-wrap">{{ $order->id }}
                                         </p>
                                     </td>
                                     <td
-                                        class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-600 text-sm">
+                                        class="px-5 py-3 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-600 text-sm">
                                         <p class="text-gray-900 dark:text-white whitespace-no-wrap">
                                             {{ str_replace(['[', ']', '"'], ' ', $order->product_name) }}
                                         </p>
                                     </td>
                                     <td
-                                        class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-600 text-sm">
+                                        class="px-5 py-3 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-600 text-sm">
                                         <p class="text-gray-900 dark:text-white whitespace-no-wrap">
                                             @if ($order->payment_status == 'Bevestigd')
                                                 <p class="text-green-400 font-bold whitespace-no-wrap">
@@ -86,7 +86,7 @@
                                         </p>
                                     </td>
                                     <td
-                                        class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-600 text-sm">
+                                        class="px-5 py-3 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-600 text-sm">
                                         <p class="text-gray-900 dark:text-white whitespace-no-wrap">
                                             @if ($order->order_status == 'Order compleet')
                                                 <p class="text-green-400 font-bold whitespace-no-wrap">
@@ -108,13 +108,13 @@
                                         </p>
                                     </td>
                                     <td
-                                        class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-600 text-sm">
+                                        class="px-5 py-3 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-600 text-sm">
                                         <p class="text-gray-900 dark:text-white whitespace-no-wrap">
                                             {{ $order->user_id }}
                                         </p>
                                     </td>
                                     <td
-                                        class="px-5 py-5 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-600 text-sm">
+                                        class="px-5 py-3 border-b border-gray-200 dark:border-gray-700 dark:bg-gray-600 text-sm">
                                         <div class="flex justify-start w-full">
                                             <a href="{{ route('orders.show', $order->id) }}">
                                                 <i class="fas fa-eye text-blue-500 text-lg"></i>
